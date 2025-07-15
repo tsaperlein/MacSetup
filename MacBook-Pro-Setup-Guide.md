@@ -20,10 +20,10 @@ This comprehensive guide will help you set up a new MacBook Pro for development 
    ```bash
    # Install Powerlevel10k theme
    ./powerlevel10k-setup/install-powerlevel10k.sh
-   
+
    # Configure with pre-made themes
    ./powerlevel10k-setup/configure-themes.sh
-   
+
    # Or run interactive configuration
    p10k configure
    ```
@@ -195,28 +195,28 @@ git config --global core.excludesfile ~/.gitignore
 41. **Docker DX** - Enhanced Docker experience
 42. **NPM Intellisense** - NPM package intelligence
 
-### VSCode JSON Settings
+### VSCode Settings Configuration
 
-The following settings optimize the development environment:
+For optimal VSCode configuration, use the automated setup script provided in this repository:
 
-```json
-{
-  "editor.lightbulb.enabled": "off",
-  "editor.cursorBlinking": "solid",
-  "editor.cursorStyle": "line",
-  "editor.cursorWidth": 2,
-  "window.titleBarStyle": "native",
-  "window.customTitleBarVisibility": "never",
-  "window.title": "${activeEditorMedium}",
-  "files.trimTrailingWhitespace": true,
-  "explorer.confirmDelete": false,
-  "explorer.compactFolders": false,
-  "workbench.sideBar.location": "right",
-  "workbench.startupEditor": "none",
-  "workbench.statusBar.visible": true,
-  "workbench.editor.enablePreview": false,
-  "workbench.editor.restoreViewState": true,
-  "workbench.activityBar.location": "hidden",
+```bash
+# Navigate to the VSCode settings setup directory
+cd vscode-settings-setup
+
+# Run the automated settings installer
+./apply-vscode-settings.sh
+```
+
+This script will:
+- ✅ **Backup existing settings** with timestamp
+- ✅ **Apply comprehensive development settings**
+- ✅ **Check for required fonts** (Hack Nerd Font)
+- ✅ **Suggest essential extensions**
+- ✅ **Restart VSCode** automatically
+
+#### Manual Settings Reference
+
+If you prefer to apply settings manually, the complete configuration includes:
   "workbench.colorTheme": "GitHub Dark Default",
   "terminal.integrated.fontSize": 14,
   "terminal.integrated.fontFamily": "Hack Nerd Font Mono",
@@ -390,6 +390,10 @@ The following settings optimize the development environment:
   }
 }
 ```
+
+> **💡 Tip**: Instead of manually copying these settings, use the automated setup script in the `vscode-settings-setup/` directory for a complete installation with backups and font checking.
+
+For detailed information about each setting and additional configuration options, see the [VSCode Settings Setup README](./vscode-settings-setup/README.md).
 
 ## Additional Tools to Consider
 
