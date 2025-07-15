@@ -7,26 +7,90 @@ This comprehensive guide will help you set up a new MacBook Pro for development 
 ### Essential Package Managers and Version Control
 
 1. **Install Homebrew** - The missing package manager for macOS
-2. **Install NVM** - Node Version Manager for handling different Node.js versions
-3. **Install pyenv** - Python version management
-4. **Install SDKMAN** - Java version management
-5. **Install Node.js using NVM** (not Homebrew)
-6. **Install and configure Git** (using Homebrew)
-7. **Enable SSH** - Generate new SSH key for secure connections
+   ```bash
+   ./homebrew-setup/install-homebrew.sh
+   ```
+
+2. **Install and configure Git** - Version control system
+   ```bash
+   ./git-setup/install-git.sh
+   ```
+
+3. **Enable SSH** - Generate new SSH key for secure connections
+   ```bash
+   ./ssh-setup/setup-ssh.sh
+   ```
+
+### Programming Language Version Managers
+
+4. **Install NVM** - Node Version Manager for handling different Node.js versions
+   ```bash
+   ./nvm-setup/install-nvm.sh
+   ```
+
+5. **Install Node.js using NVM** - JavaScript runtime and npm package manager
+   ```bash
+   ./nodejs-setup/install-nodejs.sh
+   ```
+
+6. **Install pyenv** - Python version management
+   ```bash
+   ./pyenv-setup/install-pyenv.sh
+   ```
+
+7. **Install SDKMAN** - Java, Kotlin, Scala, and JVM-based language version management
+   ```bash
+   ./sdkman-setup/install-sdkman.sh
+   ```
+
+### Containerization and Databases
+
+8. **Install Docker Desktop** - Containerization platform with management tools
+   ```bash
+   ./docker-setup/install-docker.sh
+
+   # Optional: Set up Portainer web interface
+   ./docker-setup/setup-portainer.sh
+   ```
+
+9. **Install Databases** - PostgreSQL, MySQL, MongoDB, and Redis
+   ```bash
+   ./database-setup/install-databases.sh
+   ```
 
 ### Additional Development Features
 
-8. **Install Powerlevel10k** - Enhanced Zsh theme for better terminal experience
-   ```bash
-   # Install Powerlevel10k theme
-   ./powerlevel10k-setup/install-powerlevel10k.sh
+10. **Install Powerlevel10k** - Enhanced Zsh theme for better terminal experience
+    ```bash
+    # Complete setup for Terminal, iTerm2, and VS Code (Recommended)
+    ./powerlevel10k-complete-setup/setup-complete.sh
 
-   # Configure with pre-made themes
-   ./powerlevel10k-setup/configure-themes.sh
+    # Or use individual scripts:
+    # Basic installation only
+    ./powerlevel10k-setup/install-powerlevel10k.sh
 
-   # Or run interactive configuration
-   p10k configure
-   ```
+    # Configure with pre-made themes
+    ./powerlevel10k-setup/configure-themes.sh
+
+    # Interactive configuration (run after any installation)
+    p10k configure
+    ```
+
+    > **💡 Recommendation**: Use the complete setup (`setup-complete.sh`) as it provides optimized configurations for all terminal applications with proper font handling and terminal-specific optimizations.
+
+11. **Configure Global Git Ignore** - Set up global Git ignore rules
+    ```bash
+    ./global-gitignore-setup/setup-global-gitignore.sh
+    ```
+
+12. **VS Code Setup** - Install extensions and apply settings
+    ```bash
+    # Install all essential VS Code extensions (42 extensions)
+    ./vscode-extensions-setup/install-extensions.sh
+
+    # Apply comprehensive VS Code settings
+    ./vscode-settings-setup/apply-vscode-settings.sh
+    ```
 
 ## Applications to Install
 
@@ -214,9 +278,33 @@ This script will:
 - ✅ **Suggest essential extensions**
 - ✅ **Restart VSCode** automatically
 
+### VSCode Extensions Installation
+
+Install all 42 essential VSCode extensions automatically:
+
+```bash
+# Navigate to the VSCode extensions setup directory
+cd vscode-extensions-setup
+
+# Run the automated extensions installer
+./install-extensions.sh
+```
+
+The script installs extensions organized into these categories:
+- **🔧 Core Development** (6 extensions) - GitLens, ESLint, Prettier, GitHub Copilot, Docker, Git Graph
+- **💻 Language Support** (5 extensions) - Python, Pylance, Kotlin, C/C++, JavaScript/TypeScript
+- **⚛️ React Development** (3 extensions) - React snippets and enhanced support
+- **🎨 Themes and Icons** (6 extensions) - Material themes, GitHub theme, icon packs
+- **⚡ Productivity** (6 extensions) - Auto close/rename tags, spell checker, live server
+- **📓 Jupyter and Notebooks** (5 extensions) - Complete Jupyter support
+- **🔧 Specialized Tools** (11 extensions) - LaTeX, Markdown, Figma, GitHub Actions, Remote development
+
 #### Manual Settings Reference
 
 If you prefer to apply settings manually, the complete configuration includes:
+
+```json
+{
   "workbench.colorTheme": "GitHub Dark Default",
   "terminal.integrated.fontSize": 14,
   "terminal.integrated.fontFamily": "Hack Nerd Font Mono",
@@ -391,17 +479,93 @@ If you prefer to apply settings manually, the complete configuration includes:
 }
 ```
 
-> **💡 Tip**: Instead of manually copying these settings, use the automated setup script in the `vscode-settings-setup/` directory for a complete installation with backups and font checking.
+>**💡 Tip**: Instead of manually copying these settings, use the automated setup script in the `vscode-settings-setup/` directory for a complete installation with backups and font checking.
 
 For detailed information about each setting and additional configuration options, see the [VSCode Settings Setup README](./vscode-settings-setup/README.md).
 
 ## Additional Tools to Consider
 
+### Command-Line Tools
 - **GitHub CLI** (via Homebrew) - Command-line interface for GitHub
+  ```bash
+  brew install gh
+  ```
 - **Netlify CLI** (via NPM) - Deploy and manage Netlify sites
+  ```bash
+  npm install -g netlify-cli
+  ```
+
+### System Utilities
+- **Hidden Files Management** - Toggle visibility of hidden files in Finder
+  ```bash
+  # Show hidden files
+  ./hidden-files/show-hidden-files.sh
+
+  # Hide hidden files
+  ./hidden-files/hide-hidden-files.sh
+  ```
+
+- **NPM Reset Tools** - Clean and reset NPM configuration
+  ```bash
+  # Install NPM reset utility
+  ./npm-reset-script/install.sh
+
+  # Use the reset tool when needed
+  npmreset
+  ```
+
+### Docker Management Tools
+
+The Docker setup includes additional management tools:
+- **Lazydocker** - Terminal UI for Docker management
+- **Dive** - Tool for exploring Docker image layers
+- **Portainer** - Web-based Docker management interface
+
+Access Portainer at: http://localhost:9000 (after running setup-portainer.sh)
+
+### Development Prerequisites Check
+
+Before starting any development work, run the prerequisites checker:
+```bash
+./prerequisites/check_prerequisites.sh
+```
+
+This will verify:
+- Zsh shell configuration
+- Xcode Command Line Tools
+- System compatibility
+- Required permissions
 
 ## Conclusion
 
-This setup guide provides a comprehensive foundation for MacBook Pro development. After following these steps, you'll have a fully configured development environment optimized for modern software development workflows.
+This setup guide provides a comprehensive foundation for MacBook Pro development using the automated scripts provided in this repository. The modular approach allows you to:
+
+### 🎯 Benefits of Using These Scripts
+
+- **⚡ Save Time** - Automated installation reduces setup time from hours to minutes
+- **🔄 Consistency** - Reproducible setups across different machines
+- **📋 Comprehensive** - Covers everything from system tools to development environment
+- **🛡️ Safety** - Scripts include error checking and backup functionality
+- **📖 Documentation** - Each component is thoroughly documented
+
+### 🚀 Recommended Workflow
+
+1. **Start with Prerequisites** - Always run the prerequisites checker first
+2. **Follow the Logical Order** - Install core tools before language-specific managers
+3. **Use Complete Setups** - Prefer the complete setup scripts (like powerlevel10k-complete-setup)
+4. **Verify Each Step** - Check that each installation completed successfully
+5. **Restart When Needed** - Restart terminal/applications after major installations
+
+### 🔧 Customization
+
+Each script can be customized by editing the configuration files in their respective directories. Refer to individual README files for customization options.
+
+### 📚 Getting Help
+
+- Check the README.md file in each setup directory for detailed instructions
+- Review the script contents before running for transparency
+- Use the prerequisites checker to diagnose setup issues
+
+After following these steps, you'll have a fully configured development environment optimized for modern software development workflows with all tools properly integrated and configured.
 
 Remember to restart your terminal and applications after making configuration changes to ensure all settings take effect.
