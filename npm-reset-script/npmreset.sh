@@ -21,9 +21,12 @@ npmreset() {
 }
 
 # Make the function available when script is sourced
-export -f npmreset
+# Check if we're in bash or zsh and export accordingly
+if [[ -n "$BASH_VERSION" ]]; then
+    export -f npmreset
+fi
 
 # If script is run directly (not sourced), execute the function
-if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]] || [[ "${(%):-%x}" == "${0}" ]]; then
     npmreset
 fi
