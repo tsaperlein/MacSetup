@@ -1,0 +1,413 @@
+#!/bin/bash
+
+# macOS Terminal Configuration Script for Powerlevel10k
+# This script configures the default macOS Terminal app for optimal Powerlevel10k display
+
+set -e
+
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
+
+print_status() {
+    echo -e "${GREEN}[INFO]${NC} $1"
+}
+
+print_warning() {
+    echo -e "${YELLOW}[WARNING]${NC} $1"
+}
+
+print_error() {
+    echo -e "${RED}[ERROR]${NC} $1"
+}
+
+print_step() {
+    echo -e "${BLUE}[STEP]${NC} $1"
+}
+
+print_status "Configuring macOS Terminal for Powerlevel10k..."
+
+# Step 1: Create Terminal profile
+print_step "1. Creating macOS Terminal profile for Powerlevel10k..."
+
+# Create the terminal profile
+cat > "/tmp/Powerlevel10k.terminal" << 'EOF'
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ANSIBlackColor</key>
+	<data>
+	YnBsaXN0MDDUAQIDBAUGKyxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS
+	AAGGoKQHCBESVSRudWxs1AkKCwwNDg8QVk5TU3BhY2VVTlNSR0JcTlNDb2xvclNwYWNl
+	ViRjbGFzc08QJzAuMDU0OTAxOTYwNzggMC4wNTQ5MDE5NjA3OCAwLjA1NDkwMTk2MDc4
+	ANEQE4ACgAOABNITFBUWWiRjbGFzc25hbWVYJGNsYXNzZXNXTlNDb2xvcqIVF1hOU09i
+	amVjdF8QD05TS2V5ZWRBcmNoaXZlctEaG1Ryb290gAEACAARABoAIwAtADIANwBAAEcA
+	TgBdAGQAawB4AH0AhQCHAIkAiwCQAJgAmgCcAJ4AowCsALQAtwC8AAAAAAAAAQEAAAAA
+	AAAAHQAAAAAAAAAAAAAAAAAAAMk=
+	</data>
+	<key>ANSIBlueColor</key>
+	<data>
+	YnBsaXN0MDDUAQIDBAUGKyxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS
+	AAGGoKQHCBESVSRudWxs1AkKCwwNDg8QVk5TU3BhY2VVTlNSR0JcTlNDb2xvclNwYWNl
+	ViRjbGFzc08QJzAuMjEwOTg3NDMxNyAwLjQ0MzEzNzI1NDkgMC44NTQ5MDE5NjA4ANEQ
+	E4ACgAOABNITFBUWWiRjbGFzc25hbWVYJGNsYXNzZXNXTlNDb2xvcqIVF1hOU09iamVj
+	dF8QD05TS2V5ZWRBcmNoaXZlctEaG1Ryb290gAEACAARABoAIwAtADIANwBAAEcATgBd
+	AGQAawB4AH0AhQCHAIkAiwCQAJgAmgCcAJ4AowCsALQAtwC8AAAAAAAAAQEAAAAAAAAA
+	HQAAAAAAAAAAAAAAAAAAAMk=
+	</data>
+	<key>ANSIBrightBlackColor</key>
+	<data>
+	YnBsaXN0MDDUAQIDBAUGKyxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS
+	AAGGoKQHCBESVSRudWxs1AkKCwwNDg8QVk5TU3BhY2VVTlNSR0JcTlNDb2xvclNwYWNl
+	ViRjbGFzc08QJzAuMzMzMzMzMzMzMyAwLjMzMzMzMzMzMzMgMC4zMzMzMzMzMzMzANEQ
+	E4ACgAOABNITFBUWWiRjbGFzc25hbWVYJGNsYXNzZXNXTlNDb2xvcqIVF1hOU09iamVj
+	dF8QD05TS2V5ZWRBcmNoaXZlctEaG1Ryb290gAEACAARABoAIwAtADIANwBAAEcATgBd
+	AGQAawB4AH0AhQCHAIkAiwCQAJgAmgCcAJ4AowCsALQAtwC8AAAAAAAAAQEAAAAAAAAA
+	HQAAAAAAAAAAAAAAAAAAAMk=
+	</data>
+	<key>ANSIBrightBlueColor</key>
+	<data>
+	YnBsaXN0MDDUAQIDBAUGKyxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS
+	AAGGoKQHCBESVSRudWxs1AkKCwwNDg8QVk5TU3BhY2VVTlNSR0JcTlNDb2xvclNwYWNl
+	ViRjbGFzc08QJzAuMzMzMzMzMzMzMyAwLjMzMzMzMzMzMzMgMC44NTQ5MDE5NjA4ANEQ
+	E4ACgAOABNITFBUWWiRjbGFzc25hbWVYJGNsYXNzZXNXTlNDb2xvcqIVF1hOU09iamVj
+	dF8QD05TS2V5ZWRBcmNoaXZlctEaG1Ryb290gAEACAARABoAIwAtADIANwBAAEcATgBd
+	AGQAawB4AH0AhQCHAIkAiwCQAJgAmgCcAJ4AowCsALQAtwC8AAAAAAAAAQEAAAAAAAAA
+	HQAAAAAAAAAAAAAAAAAAAMk=
+	</data>
+	<key>ANSIBrightCyanColor</key>
+	<data>
+	YnBsaXN0MDDUAQIDBAUGKyxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS
+	AAGGoKQHCBESVSRudWxs1AkKCwwNDg8QVk5TU3BhY2VVTlNSR0JcTlNDb2xvclNwYWNl
+	ViRjbGFzc08QJzAuMzMzMzMzMzMzMyAwLjg1NDkwMTk2MDggMC44NTQ5MDE5NjA4ANEQ
+	E4ACgAOABNITFBUWWiRjbGFzc25hbWVYJGNsYXNzZXNXTlNDb2xvcqIVF1hOU09iamVj
+	dF8QD05TS2V5ZWRBcmNoaXZlctEaG1Ryb290gAEACAARABoAIwAtADIANwBAAEcATgBd
+	AGQAawB4AH0AhQCHAIkAiwCQAJgAmgCcAJ4AowCsALQAtwC8AAAAAAAAAQEAAAAAAAAA
+	HQAAAAAAAAAAAAAAAAAAAMk=
+	</data>
+	<key>ANSIBrightGreenColor</key>
+	<data>
+	YnBsaXN0MDDUAQIDBAUGKyxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS
+	AAGGoKQHCBESVSRudWxs1AkKCwwNDg8QVk5TU3BhY2VVTlNSR0JcTlNDb2xvclNwYWNl
+	ViRjbGFzc08QJzAuMzMzMzMzMzMzMyAwLjg1NDkwMTk2MDggMC4zMzMzMzMzMzMzANEQ
+	E4ACgAOABNITFBUWWiRjbGFzc25hbWVYJGNsYXNzZXNXTlNDb2xvcqIVF1hOU09iamVj
+	dF8QD05TS2V5ZWRBcmNoaXZlctEaG1Ryb290gAEACAARABoAIwAtADIANwBAAEcATgBd
+	AGQAawB4AH0AhQCHAIkAiwCQAJgAmgCcAJ4AowCsALQAtwC8AAAAAAAAAQEAAAAAAAAA
+	HQAAAAAAAAAAAAAAAAAAAMk=
+	</data>
+	<key>ANSIBrightMagentaColor</key>
+	<data>
+	YnBsaXN0MDDUAQIDBAUGKyxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS
+	AAGGoKQHCBESVSRudWxs1AkKCwwNDg8QVk5TU3BhY2VVTlNSR0JcTlNDb2xvclNwYWNl
+	ViRjbGFzc08QJzAuODU0OTAxOTYwOCAwLjMzMzMzMzMzMzMgMC44NTQ5MDE5NjA4ANEQ
+	E4ACgAOABNITFBUWWiRjbGFzc25hbWVYJGNsYXNzZXNXTlNDb2xvcqIVF1hOU09iamVj
+	dF8QD05TS2V5ZWRBcmNoaXZlctEaG1Ryb290gAEACAARABoAIwAtADIANwBAAEcATgBd
+	AGQAawB4AH0AhQCHAIkAiwCQAJgAmgCcAJ4AowCsALQAtwC8AAAAAAAAAQEAAAAAAAAA
+	HQAAAAAAAAAAAAAAAAAAAMk=
+	</data>
+	<key>ANSIBrightRedColor</key>
+	<data>
+	YnBsaXN0MDDUAQIDBAUGKyxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS
+	AAGGoKQHCBESVSRudWxs1AkKCwwNDg8QVk5TU3BhY2VVTlNSR0JcTlNDb2xvclNwYWNl
+	ViRjbGFzc08QJzAuODU0OTAxOTYwOCAwLjMzMzMzMzMzMzMgMC4zMzMzMzMzMzMzANEQ
+	E4ACgAOABNITFBUWWiRjbGFzc25hbWVYJGNsYXNzZXNXTlNDb2xvcqIVF1hOU09iamVj
+	dF8QD05TS2V5ZWRBcmNoaXZlctEaG1Ryb290gAEACAARABoAIwAtADIANwBAAEcATgBd
+	AGQAawB4AH0AhQCHAIkAiwCQAJgAmgCcAJ4AowCsALQAtwC8AAAAAAAAAQEAAAAAAAAA
+	HQAAAAAAAAAAAAAAAAAAAMk=
+	</data>
+	<key>ANSIBrightWhiteColor</key>
+	<data>
+	YnBsaXN0MDDUAQIDBAUGKyxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS
+	AAGGoKQHCBESVSRudWxs1AkKCwwNDg8QVk5TU3BhY2VVTlNSR0JcTlNDb2xvclNwYWNl
+	ViRjbGFzc08QJzAuODU0OTAxOTYwOCAwLjg1NDkwMTk2MDggMC44NTQ5MDE5NjA4ANEQ
+	E4ACgAOABNITFBUWWiRjbGFzc25hbWVYJGNsYXNzZXNXTlNDb2xvcqIVF1hOU09iamVj
+	dF8QD05TS2V5ZWRBcmNoaXZlctEaG1Ryb290gAEACAARABoAIwAtADIANwBAAEcATgBd
+	AGQAawB4AH0AhQCHAIkAiwCQAJgAmgCcAJ4AowCsALQAtwC8AAAAAAAAAQEAAAAAAAAA
+	HQAAAAAAAAAAAAAAAAAAAMk=
+	</data>
+	<key>ANSIBrightYellowColor</key>
+	<data>
+	YnBsaXN0MDDUAQIDBAUGKyxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS
+	AAGGoKQHCBESVSRudWxs1AkKCwwNDg8QVk5TU3BhY2VVTlNSR0JcTlNDb2xvclNwYWNl
+	ViRjbGFzc08QJzAuODU0OTAxOTYwOCAwLjg1NDkwMTk2MDggMC4zMzMzMzMzMzMzANEQ
+	E4ACgAOABNITFBUWWiRjbGFzc25hbWVYJGNsYXNzZXNXTlNDb2xvcqIVF1hOU09iamVj
+	dF8QD05TS2V5ZWRBcmNoaXZlctEaG1Ryb290gAEACAARABoAIwAtADIANwBAAEcATgBd
+	AGQAawB4AH0AhQCHAIkAiwCQAJgAmgCcAJ4AowCsALQAtwC8AAAAAAAAAQEAAAAAAAAA
+	HQAAAAAAAAAAAAAAAAAAAMk=
+	</data>
+	<key>ANSICyanColor</key>
+	<data>
+	YnBsaXN0MDDUAQIDBAUGKyxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS
+	AAGGoKQHCBESVSRudWxs1AkKCwwNDg8QVk5TU3BhY2VVTlNSR0JcTlNDb2xvclNwYWNl
+	ViRjbGFzc08QJzAuMjEwOTg3NDMxNyAwLjU5NjA3ODQzMTQgMC42NTA5ODAzOTIyANEQ
+	E4ACgAOABNITFBUWWiRjbGFzc25hbWVYJGNsYXNzZXNXTlNDb2xvcqIVF1hOU09iamVj
+	dF8QD05TS2V5ZWRBcmNoaXZlctEaG1Ryb290gAEACAARABoAIwAtADIANwBAAEcATgBd
+	AGQAawB4AH0AhQCHAIkAiwCQAJgAmgCcAJ4AowCsALQAtwC8AAAAAAAAAQEAAAAAAAAA
+	HQAAAAAAAAAAAAAAAAAAAMk=
+	</data>
+	<key>ANSIGreenColor</key>
+	<data>
+	YnBsaXN0MDDUAQIDBAUGKyxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS
+	AAGGoKQHCBESVSRudWxs1AkKCwwNDg8QVk5TU3BhY2VVTlNSR0JcTlNDb2xvclNwYWNl
+	ViRjbGFzc08QJzAuMzY4NjI3NDUxIDAuNjAzOTIxNTY4NiAwLjMzMzMzMzMzMzMAzRAS
+	AIACE4AFgAZYJGNsYXNzZXNaJGNsYXNzbmFtZaMRCBJXTlNDb2xvcllOU0NvbG9yU3Bh
+	Y2XHIQAAAAAAAAABAAAAAAAAAAAMAAAAAAAAAAAAAAAAAAAA5Qg=
+	</data>
+	<key>ANSIMagentaColor</key>
+	<data>
+	YnBsaXN0MDDUAQIDBAUGKyxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS
+	AAGGoKQHCBESVSRudWxs1AkKCwwNDg8QVk5TU3BhY2VVTlNSR0JcTlNDb2xvclNwYWNl
+	ViRjbGFzc08QJzAuNjY2NjY2NjY2NyAwLjMzMzMzMzMzMzMgMC42NjY2NjY2NjY3ANEQ
+	E4ACgAOABNITFBUWWiRjbGFzc25hbWVYJGNsYXNzZXNXTlNDb2xvcqIVF1hOU09iamVj
+	dF8QD05TS2V5ZWRBcmNoaXZlctEaG1Ryb290gAEACAARABoAIwAtADIANwBAAEcATgBd
+	AGQAawB4AH0AhQCHAIkAiwCQAJgAmgCcAJ4AowCsALQAtwC8AAAAAAAAAQEAAAAAAAAA
+	HQAAAAAAAAAAAAAAAAAAAMk=
+	</data>
+	<key>ANSIRedColor</key>
+	<data>
+	YnBsaXN0MDDUAQIDBAUGKyxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS
+	AAGGoKQHCBESVSRudWxs1AkKCwwNDg8QVk5TU3BhY2VVTlNSR0JcTlNDb2xvclNwYWNl
+	ViRjbGFzc08QJzAuNjY2NjY2NjY2NyAwLjMwNTg4MjM1MjkgMC4zMDU4ODIzNTI5ANEQ
+	E4ACgAOABNITFBUWWiRjbGFzc25hbWVYJGNsYXNzZXNXTlNDb2xvcqIVF1hOU09iamVj
+	dF8QD05TS2V5ZWRBcmNoaXZlctEaG1Ryb290gAEACAARABoAIwAtADIANwBAAEcATgBd
+	AGQAawB4AH0AhQCHAIkAiwCQAJgAmgCcAJ4AowCsALQAtwC8AAAAAAAAAQEAAAAAAAAA
+	HQAAAAAAAAAAAAAAAAAAAMk=
+	</data>
+	<key>ANSIWhiteColor</key>
+	<data>
+	YnBsaXN0MDDUAQIDBAUGKyxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS
+	AAGGoKQHCBESVSRudWxs1AkKCwwNDg8QVk5TU3BhY2VVTlNSR0JcTlNDb2xvclNwYWNl
+	ViRjbGFzc08QJzAuNzMzMzMzMzMzMyAwLjczMzMzMzMzMzMgMC43MzMzMzMzMzMzANEQ
+	E4ACgAOABNITFBUWWiRjbGFzc25hbWVYJGNsYXNzZXNXTlNDb2xvcqIVF1hOU09iamVj
+	dF8QD05TS2V5ZWRBcmNoaXZlctEaG1Ryb290gAEACAARABoAIwAtADIANwBAAEcATgBd
+	AGQAawB4AH0AhQCHAIkAiwCQAJgAmgCcAJ4AowCsALQAtwC8AAAAAAAAAQEAAAAAAAAA
+	HQAAAAAAAAAAAAAAAAAAAMk=
+	</data>
+	<key>ANSIYellowColor</key>
+	<data>
+	YnBsaXN0MDDUAQIDBAUGKyxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS
+	AAGGoKQHCBESVSRudWxs1AkKCwwNDg8QVk5TU3BhY2VVTlNSR0JcTlNDb2xvclNwYWNl
+	ViRjbGFzc08QJzAuNzA1ODgyMzUyOSAwLjYxMTc2NDcwNTkgMC4zMDU4ODIzNTI5ANEQ
+	E4ACgAOABNITFBUWWiRjbGFzc25hbWVYJGNsYXNzZXNXTlNDb2xvcqIVF1hOU09iamVj
+	dF8QD05TS2V5ZWRBcmNoaXZlctEaG1Ryb290gAEACAARABoAIwAtADIANwBAAEcATgBd
+	AGQAawB4AH0AhQCHAIkAiwCQAJgAmgCcAJ4AowCsALQAtwC8AAAAAAAAAQEAAAAAAAAA
+	HQAAAAAAAAAAAAAAAAAAAMk=
+	</data>
+	<key>BackgroundColor</key>
+	<data>
+	YnBsaXN0MDDUAQIDBAUGKyxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS
+	AAGGoKQHCBESVSRudWxs1AkKCwwNDg8QVk5TU3BhY2VVTlNSR0JcTlNDb2xvclNwYWNl
+	ViRjbGFzc08QJzAuMTI5NDExNzY0NyAwLjEyOTQxMTc2NDcgMC4xMjk0MTE3NjQ3ANEQ
+	E4ACgAOABNITFBUWWiRjbGFzc25hbWVYJGNsYXNzZXNXTlNDb2xvcqIVF1hOU09iamVj
+	dF8QD05TS2V5ZWRBcmNoaXZlctEaG1Ryb290gAEACAARABoAIwAtADIANwBAAEcATgBd
+	AGQAawB4AH0AhQCHAIkAiwCQAJgAmgCcAJ4AowCsALQAtwC8AAAAAAAAAQEAAAAAAAAA
+	HQAAAAAAAAAAAAAAAAAAAMk=
+	</data>
+	<key>CursorColor</key>
+	<data>
+	YnBsaXN0MDDUAQIDBAUGKyxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS
+	AAGGoKQHCBESVSRudWxs1AkKCwwNDg8QVk5TU3BhY2VVTlNSR0JcTlNDb2xvclNwYWNl
+	ViRjbGFzc08QJzAuODU0OTAxOTYwOCAwLjg1NDkwMTk2MDggMC44NTQ5MDE5NjA4ANEQ
+	E4ACgAOABNITFBUWWiRjbGFzc25hbWVYJGNsYXNzZXNXTlNDb2xvcqIVF1hOU09iamVj
+	dF8QD05TS2V5ZWRBcmNoaXZlctEaG1Ryb290gAEACAARABoAIwAtADIANwBAAEcATgBd
+	AGQAawB4AH0AhQCHAIkAiwCQAJgAmgCcAJ4AowCsALQAtwC8AAAAAAAAAQEAAAAAAAAA
+	HQAAAAAAAAAAAAAAAAAAAMk=
+	</data>
+	<key>Font</key>
+	<data>
+	YnBsaXN0MDDUAQIDBAUGGBlYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS
+	AAGGoKMHCA9VJG51bGzTCQoLDA0OVk5TU2l6ZVhOU2ZGbGFnc1ZOU05hbWUjQC4AAAAA
+	AAAAEAiAAlMxNGOACYAKXkhhY2tOZXJkRm9udC1SZWd1bGFy0hAREhNaJGNsYXNzbmFt
+	ZVgkY2xhc3Nlc1ZOU0ZvbnSiEhRYTlNPYmplY3RfEA9OU0tleWVkQXJjaGl2ZXLRFxhU
+	cm9vdIABAAoAEwAcACUALQAyADkAPwBFAFAAVQBeAGoAbABuAHAAhQCJAI4AmQCgAKMA
+	uwC9AL8AwQDGAMsA0wDVANcA2QDeAOMA9gD5AQ4AAAAAAAACAQAAAAAAAAAZAAAAAAAA
+	AAAAAAAAAAAAAQQ=
+	</data>
+	<key>FontAntialias</key>
+	<true/>
+	<key>FontHeightSpacing</key>
+	<real>1</real>
+	<key>FontWidthSpacing</key>
+	<real>1</real>
+	<key>ProfileCurrentVersion</key>
+	<real>2.0700000000000003</real>
+	<key>SelectionColor</key>
+	<data>
+	YnBsaXN0MDDUAQIDBAUGKyxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS
+	AAGGoKQHCBESVSRudWxs1AkKCwwNDg8QVk5TU3BhY2VVTlNSR0JcTlNDb2xvclNwYWNl
+	ViRjbGFzc08QJzAuMjY2NjY2NjY2NyAwLjI3NDUwOTgwMzkgMC4zNTI5NDExNzY1ANEQ
+	E4ACgAOABNITFBUWWiRjbGFzc25hbWVYJGNsYXNzZXNXTlNDb2xvcqIVF1hOU09iamVj
+	dF8QD05TS2V5ZWRBcmNoaXZlctEaG1Ryb290gAEACAARABoAIwAtADIANwBAAEcATgBd
+	AGQAawB4AH0AhQCHAIkAiwCQAJgAmgCcAJ4AowCsALQAtwC8AAAAAAAAAQEAAAAAAAAA
+	HQAAAAAAAAAAAAAAAAAAAMk=
+	</data>
+	<key>TextBoldColor</key>
+	<data>
+	YnBsaXN0MDDUAQIDBAUGKyxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS
+	AAGGoKQHCBESVSRudWxs1AkKCwwNDg8QVk5TU3BhY2VVTlNSR0JcTlNDb2xvclNwYWNl
+	ViRjbGFzc08QJzAuOTY0NzA1ODgyNCAwLjk2NDcwNTg4MjQgMC45NjQ3MDU4ODI0ANEQ
+	E4ACgAOABNITFBUWWiRjbGFzc25hbWVYJGNsYXNzZXNXTlNDb2xvcqIVF1hOU09iamVj
+	dF8QD05TS2V5ZWRBcmNoaXZlctEaG1Ryb290gAEACAARABoAIwAtADIANwBAAEcATgBd
+	AGQAawB4AH0AhQCHAIkAiwCQAJgAmgCcAJ4AowCsALQAtwC8AAAAAAAAAQEAAAAAAAAA
+	HQAAAAAAAAAAAAAAAAAAAMk=
+	</data>
+	<key>TextColor</key>
+	<data>
+	YnBsaXN0MDDUAQIDBAUGKyxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS
+	AAGGoKQHCBESVSRudWxs1AkKCwwNDg8QVk5TU3BhY2VVTlNSR0JcTlNDb2xvclNwYWNl
+	ViRjbGFzc08QJzAuODYyNzQ1MDk4IDAuODYyNzQ1MDk4IDAuODYyNzQ1MDk4ANEQE4AC
+	gAOABNITFBUWWiRjbGFzc25hbWVYJGNsYXNzZXNXTlNDb2xvcqIVF1hOU09iamVjdF8Q
+	D05TS2V5ZWRBcmNoaXZlctEaG1Ryb290gAEACAARABoAIwAtADIANwBAAEcATgBdAGQA
+	awB4AH0AhQCHAIkAiwCQAJgAmgCcAJ4AowCsALQAtwC8AAAAAAAAAQEAAAAAAAAAAAA
+	AAAAAAAAAMA==
+	</data>
+	<key>columnCount</key>
+	<integer>90</integer>
+	<key>name</key>
+	<string>Powerlevel10k</string>
+	<key>rowCount</key>
+	<integer>25</integer>
+	<key>type</key>
+	<string>Window Settings</string>
+</dict>
+</plist>
+EOF
+
+# Step 2: Import the profile into Terminal
+print_step "2. Importing Terminal profile..."
+open "/tmp/Powerlevel10k.terminal"
+
+# Wait a moment for Terminal to process
+sleep 2
+
+# Step 3: Set as default profile using AppleScript
+print_step "3. Setting Powerlevel10k as default Terminal profile..."
+
+osascript << 'EOF'
+tell application "Terminal"
+    set default settings to settings set "Powerlevel10k"
+end tell
+EOF
+
+if [ $? -eq 0 ]; then
+    print_status "✅ Powerlevel10k profile set as default in Terminal"
+else
+    print_warning "⚠️  Could not automatically set as default. Please set manually in Terminal preferences."
+fi
+
+# Step 4: Configure Terminal-specific settings
+print_step "4. Applying additional Terminal configurations..."
+
+# Set TERM environment variable for better compatibility
+if ! grep -q "export TERM=xterm-256color" "$HOME/.zshrc"; then
+    echo "" >> "$HOME/.zshrc"
+    echo "# Terminal configuration for better compatibility" >> "$HOME/.zshrc"
+    echo "export TERM=xterm-256color" >> "$HOME/.zshrc"
+    print_status "Added TERM=xterm-256color to .zshrc"
+fi
+
+# Create Terminal-specific Powerlevel10k config
+print_step "5. Creating Terminal-optimized Powerlevel10k configuration..."
+
+cat > "$HOME/.p10k-terminal.zsh" << 'EOF'
+# Configuration for macOS Terminal app - optimized for better symbol display
+typeset -g POWERLEVEL9K_MODE='nerdfont-complete'
+
+# Instant prompt mode
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=verbose
+
+# Character set compatibility
+typeset -g POWERLEVEL9K_LEGACY_ICON_SPACING=true
+
+# Background Jobs
+typeset -g POWERLEVEL9K_BACKGROUND_JOBS_VERBOSE=false
+
+# Context (user@host)
+typeset -g POWERLEVEL9K_CONTEXT_DEFAULT_CONTENT_EXPANSION='%n'
+typeset -g POWERLEVEL9K_CONTEXT_TEMPLATE='%n@%m'
+
+# Directory
+typeset -g POWERLEVEL9K_SHORTEN_STRATEGY=truncate_to_last
+typeset -g POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
+typeset -g POWERLEVEL9K_DIR_TRUNCATE_BEFORE_MARKER=true
+
+# Git
+typeset -g POWERLEVEL9K_VCS_CLEAN_FOREGROUND=green
+typeset -g POWERLEVEL9K_VCS_MODIFIED_FOREGROUND=yellow
+typeset -g POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND=blue
+
+# Command execution time
+typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD=2
+typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_PRECISION=1
+
+# Status
+typeset -g POWERLEVEL9K_STATUS_OK=false
+typeset -g POWERLEVEL9K_STATUS_ERROR_BACKGROUND=red
+typeset -g POWERLEVEL9K_STATUS_ERROR_FOREGROUND=white
+
+# Time
+typeset -g POWERLEVEL9K_TIME_FORMAT='%D{%H:%M:%S}'
+
+# Configure which elements appear on left and right
+typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
+    dir
+    vcs
+    newline
+    status
+    prompt_char
+)
+
+typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
+    command_execution_time
+    background_jobs
+    time
+)
+
+# Prompt character
+typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_{VIINS,VICMD,VIVIS,VIOWR}_FOREGROUND=green
+typeset -g POWERLEVEL9K_PROMPT_CHAR_ERROR_{VIINS,VICMD,VIVIS,VIOWR}_FOREGROUND=red
+
+# Terminal-specific adjustments
+if [[ "$TERM_PROGRAM" == "Apple_Terminal" ]]; then
+    # Use simpler icons for better compatibility
+    typeset -g POWERLEVEL9K_VCS_BRANCH_ICON=''
+    typeset -g POWERLEVEL9K_VCS_GIT_ICON=''
+    typeset -g POWERLEVEL9K_HOME_ICON=''
+    typeset -g POWERLEVEL9K_FOLDER_ICON=''
+    typeset -g POWERLEVEL9K_ETC_ICON=''
+
+    # Simpler prompt characters
+    typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIINS_CONTENT_EXPANSION='❯'
+    typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VICMD_CONTENT_EXPANSION='❮'
+fi
+EOF
+
+# Add conditional loading to .zshrc
+print_step "6. Updating .zshrc for Terminal compatibility..."
+
+if ! grep -q "Terminal-specific" "$HOME/.zshrc"; then
+    cat >> "$HOME/.zshrc" << 'EOF'
+
+# Terminal-specific Powerlevel10k configuration
+if [[ "$TERM_PROGRAM" == "Apple_Terminal" ]]; then
+    [[ ! -f ~/.p10k-terminal.zsh ]] || source ~/.p10k-terminal.zsh
+fi
+EOF
+    print_status "Added Terminal-specific configuration to .zshrc"
+fi
+
+print_status "macOS Terminal configuration completed!"
+echo ""
+print_status "To complete the setup:"
+echo "1. Restart Terminal application"
+echo "2. Open a new Terminal window"
+echo "3. The Powerlevel10k profile should be active"
+echo "4. Run 'p10k configure' if you want to customize further"
+echo ""
+print_warning "Note: If symbols still don't display correctly, you may need to:"
+echo "  • Check that Hack Nerd Font is properly installed"
+echo "  • Manually select the font in Terminal > Preferences > Profiles > Text"
