@@ -16,7 +16,17 @@ This comprehensive guide will help you set up a new MacBook Pro for development 
 
 ### Additional Development Features
 
-- **Powerlevel10k** - Enhanced Zsh theme for better terminal experience
+8. **Install Powerlevel10k** - Enhanced Zsh theme for better terminal experience
+   ```bash
+   # Install Powerlevel10k theme
+   ./powerlevel10k-setup/install-powerlevel10k.sh
+   
+   # Configure with pre-made themes
+   ./powerlevel10k-setup/configure-themes.sh
+   
+   # Or run interactive configuration
+   p10k configure
+   ```
 
 ## Applications to Install
 
