@@ -27,6 +27,7 @@ if [[ -n "$BASH_VERSION" ]]; then
 fi
 
 # If script is run directly (not sourced), execute the function
-if [[ "${BASH_SOURCE[0]}" == "${0}" ]] || [[ "${(%):-%x}" == "${0}" ]]; then
-    npmreset
+# Only execute if running the script directly, not when sourcing it
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    npmreset "$@"
 fi
